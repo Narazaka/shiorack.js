@@ -116,9 +116,9 @@ export default builder.build(); // build SHIORI interface
 shiolinkjs ./myShiori.js
 ```
 
-## API
+## API Document
 
-[API Document](https://doc.esdoc.org/github.com/Narazaka/sanajk/)
+[https://narazaka.github.io/shiorack.js/](https://narazaka.github.io/shiorack.js/)
 
 ## License
 
