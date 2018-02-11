@@ -32,11 +32,14 @@ export type LoadMiddleware<State> = Middleware<LoadContext<State>, LoadResult>;
 export type RequestMiddleware<State> = Middleware<RequestContext<State>, RequestResult>;
 export type UnloadMiddleware<State> = Middleware<UnloadContext<State>, UnloadResult>;
 
-export interface ShioriMiddlewareWithState<State, AddState> {
-    load?: LoadMiddleware<State & AddState>;
-    request?: RequestMiddleware<State & AddState>;
-    unload?: UnloadMiddleware<State & AddState>;
-    state?: AddState;
+export interface ShioriMiddleware<State> {
+    load?: LoadMiddleware<State>;
+    request?: RequestMiddleware<State>;
+    unload?: UnloadMiddleware<State>;
+}
+
+export interface ShioriMiddlewareWithState<State, AddState> extends ShioriMiddleware<State & AddState> {
+    state: AddState;
 }
 
 export interface ShioriMiddlewares<State> {
@@ -78,6 +81,8 @@ export class ShioriBuilder<State = {}> {
      * add middleware
      * @param middleware middleware with state
      */
+    use(middleware: ShioriMiddleware<State>): ShioriBuilder<State>;
+    use<AddState>(middleware: ShioriMiddlewareWithState<State, AddState>): ShioriBuilder<State & AddState>;
     use<AddState = {}>(middleware: ShioriMiddlewareWithState<State, AddState>) {
         const newState =
             (middleware.state ?
@@ -101,6 +106,8 @@ export class ShioriBuilder<State = {}> {
      * @param middleware middleware
      * @param state state
      */
+    useLoad(middleware: LoadMiddleware<State>): ShioriBuilder<State>;
+    useLoad<AddState>(middleware: LoadMiddleware<State & AddState>, state: AddState): ShioriBuilder<State & AddState>;
     useLoad<AddState = {}>(middleware: LoadMiddleware<State & AddState>, state?: AddState) {
         return this.use({load: middleware, state});
     }
@@ -110,6 +117,9 @@ export class ShioriBuilder<State = {}> {
      * @param middleware middleware
      * @param state state
      */
+    useRequest(middleware: RequestMiddleware<State>): ShioriBuilder<State>;
+    useRequest<AddState>(middleware: RequestMiddleware<State & AddState>, state: AddState):
+        ShioriBuilder<State & AddState>;
     useRequest<AddState = {}>(middleware: RequestMiddleware<State & AddState>, state?: AddState) {
         return this.use({request: middleware, state});
     }
@@ -119,6 +129,9 @@ export class ShioriBuilder<State = {}> {
      * @param middleware middleware
      * @param state state
      */
+    useUnload(middleware: UnloadMiddleware<State>): ShioriBuilder<State>;
+    useUnload<AddState>(middleware: UnloadMiddleware<State & AddState>, state: AddState):
+        ShioriBuilder<State & AddState>;
     useUnload<AddState = {}>(middleware: UnloadMiddleware<State & AddState>, state?: AddState) {
         return this.use({unload: middleware, state});
     }
