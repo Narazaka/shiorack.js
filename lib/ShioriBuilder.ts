@@ -1,6 +1,7 @@
 import * as ShioriJK from "shiorijk";
+import { addMiddleware, checkMiddleware } from "./addMiddleware";
+import { compose } from "./compose";
 import { Middleware } from "./Middleware";
-import { MiddlewareBuilder } from "./MiddlewareBuilder";
 
 /** base context */
 export interface BaseContext<State> {
@@ -31,41 +32,95 @@ export type LoadMiddleware<State> = Middleware<LoadContext<State>, LoadResult>;
 export type RequestMiddleware<State> = Middleware<RequestContext<State>, RequestResult>;
 export type UnloadMiddleware<State> = Middleware<UnloadContext<State>, UnloadResult>;
 
-export interface ShioriMiddleware<State> {
-    load?: LoadMiddleware<State>;
-    request?: RequestMiddleware<State>;
-    unload?: UnloadMiddleware<State>;
+export interface ShioriMiddlewareWithState<State, AddState> {
+    load?: LoadMiddleware<State & AddState>;
+    request?: RequestMiddleware<State & AddState>;
+    unload?: UnloadMiddleware<State & AddState>;
+    state?: AddState;
+}
+
+export interface ShioriMiddlewares<State> {
+    load?: Array<LoadMiddleware<State>>;
+    request?: Array<RequestMiddleware<State>>;
+    unload?: Array<UnloadMiddleware<State>>;
 }
 
 /** SHIORI subsystem interface builder  */
-export class ShioriBuilder<State> {
+export class ShioriBuilder<State = {}> {
     /** load middlewares */
-    load = new MiddlewareBuilder<LoadContext<State>, LoadResult>();
+    load: Array<LoadMiddleware<State>>;
     /** request middlewares */
-    request = new MiddlewareBuilder<RequestContext<State>, RequestResult>();
+    request: Array<RequestMiddleware<State>>;
     /** unload middlewares */
-    unload = new MiddlewareBuilder<UnloadContext<State>, UnloadResult>();
+    unload: Array<UnloadMiddleware<State>>;
     /** state in context */
     state: State;
 
     /**
      * construct builder
      * @param state state in context
+     * @param middlewares middlewares
+     * @param check check middlewares
      */
-    constructor(state: State) {
+    constructor(state: State = {} as any, middlewares: ShioriMiddlewares<State> = {}, check = true) {
         this.state = state;
+        this.load = middlewares.load || [];
+        this.request = middlewares.request || [];
+        this.unload = middlewares.unload || [];
+        if (check) {
+            for (const middleware of this.load) checkMiddleware(middleware);
+            for (const middleware of this.request) checkMiddleware(middleware);
+            for (const middleware of this.unload) checkMiddleware(middleware);
+        }
     }
 
     /**
      * add middleware
-     * @param middleware middleware
+     * @param middleware middleware with state
      */
-    use(middleware: ShioriMiddleware<State>) {
-        if (middleware.load) this.load.use(middleware.load);
-        if (middleware.request) this.request.use(middleware.request);
-        if (middleware.unload) this.unload.use(middleware.unload);
+    use<AddState = {}>(middleware: ShioriMiddlewareWithState<State, AddState>) {
+        const newState =
+            (middleware.state ?
+                // tslint:disable-next-line prefer-object-spread
+                Object.assign(Object.assign({}, this.state), middleware.state) :
+                this.state) as State & AddState;
 
-        return this;
+        return new ShioriBuilder(
+            newState,
+            {
+                load: middleware.load ? addMiddleware(this.load, middleware.load) : this.load,
+                request: middleware.request ? addMiddleware(this.load, middleware.request) : this.load,
+                unload: middleware.unload ? addMiddleware(this.load, middleware.unload) : this.load,
+            },
+            false,
+        );
+    }
+
+    /**
+     * add load middleware
+     * @param middleware middleware
+     * @param state state
+     */
+    useLoad<AddState = {}>(middleware: LoadMiddleware<State & AddState>, state?: AddState) {
+        return this.use({load: middleware, state});
+    }
+
+    /**
+     * add request middleware
+     * @param middleware middleware
+     * @param state state
+     */
+    useRequest<AddState = {}>(middleware: RequestMiddleware<State & AddState>, state?: AddState) {
+        return this.use({request: middleware, state});
+    }
+
+    /**
+     * add unload middleware
+     * @param middleware middleware
+     * @param state state
+     */
+    useUnload<AddState = {}>(middleware: UnloadMiddleware<State & AddState>, state?: AddState) {
+        return this.use({unload: middleware, state});
     }
 
     /** build SHIORI interface */
@@ -79,7 +134,7 @@ export class ShioriBuilder<State> {
 
     /** build load() middleware */
     private buildLoad() {
-        const middleware = this.load.build();
+        const middleware = compose(this.load);
         const state = this.state;
 
         return function load(dirpath: string) {
@@ -91,7 +146,7 @@ export class ShioriBuilder<State> {
 
     /** build request() middleware */
     private buildRequest() {
-        const middleware = this.request.build();
+        const middleware = compose(this.request);
         const state = this.state;
         const requestParser = new ShioriJK.Shiori.Request.Parser();
 
@@ -105,7 +160,7 @@ export class ShioriBuilder<State> {
 
     /** build unload() middleware */
     private buildUnload() {
-        const middleware = this.unload.build();
+        const middleware = compose(this.unload);
         const state = this.state;
 
         return function unload() {

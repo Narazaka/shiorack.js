@@ -29,70 +29,73 @@ import { NoContent, OK, wrapRequestCallback } from "shiori-request-helper";
 import * as ShioriJK from "shiorijk";
 import { ShioriBuilder } from "shiorack";
 
-class State {
-    dirpath: string;
-    defaultHeaders: {[name: string]: string} = {};
+interface HeadersState {
+    defaultHeaders: {[name: string]: string};
 }
 
-const state = new State();
+// tslint:disable no-object-literal-type-assertion
+const builder = new ShioriBuilder()
+    .use({
+        state: {} as {dirpath: string},
+        // set dirpath
+        load: (ctx, next) => {
+            ctx.state.dirpath = ctx.dirpath;
 
-state.defaultHeaders.Charset = "UTF-8";
-
-const builder = new ShioriBuilder(state);
-
-builder.use({
-    // set dirpath
-    load: (ctx, next) => {
-        ctx.state.dirpath = ctx.dirpath;
-
-        return next();
-    },
-    // error handler
-    request: async (ctx, next) => {
-        try {
-            return await next();
-        } catch (error) {
+            return next();
+        },
+        // exit
+        unload: async (_ctx, next) => {
+            await next();
+            process.exit();
+        },
+    })
+    .use({
+        state: {
+            defaultHeaders: { Charset: "UTF-8" },
+        } as HeadersState,
+        // error handler
+        request: async (ctx, next) => {
+            try {
+                return await next();
+            } catch (error) {
+                return new ShioriJK.Message.Response({
+                    status_line: {code: 400, version: "3.0"},
+                    headers: {
+                        ...ctx.state.defaultHeaders,
+                        "X-Shiori-Error": error.message.replace(/\r?\n/g, "\\n"),
+                    },
+                });
+            }
+        },
+    })
+    // ignore OnTranslate
+    .useRequest((ctx, next) => {
+        if (ctx.request.headers.ID === "OnTranslate") {
             return new ShioriJK.Message.Response({
                 status_line: {code: 400, version: "3.0"},
                 headers: {
-                    ...ctx.state.defaultHeaders,
-                    "X-Shiori-Error": error.message.replace(/\r?\n/g, "\\n"),
+                    Charset: "UTF-8",
                 },
             });
         }
-    },
-    // exit
-    unload: async (_ctx, next) => {
-        await next();
-        process.exit();
-    },
-});
 
-// ignore OnTranslate
-builder.request.use((ctx, next) => {
-    if (ctx.request.headers.ID === "OnTranslate") {
-        return new ShioriJK.Message.Response({
-            status_line: {code: 400, version: "3.0"},
-            headers: {
-                Charset: "UTF-8",
-            },
-        });
-    }
+        return next();
+    })
+    // set ghost name to sender
+    .useRequest(
+        (ctx, next) => {
+            if (ctx.request.headers.ID === "ownerghostname") {
+                const sender = ctx.request.headers.Reference(0);
+                if (typeof sender === "string" && sender.length) {
+                    ctx.state.defaultHeaders.Sender = sender;
+                    ctx.state.sender = sender;
+                }
+            }
 
-    return next();
-});
-
-// set ghost name to sender
-builder.request.use((ctx, next) => {
-    if (ctx.request.headers.ID === "ownerghostname") {
-        const sender = ctx.request.headers.Reference(0);
-        if (typeof sender === "string" && sender.length) {
-            ctx.state.defaultHeaders.Sender = sender;
-        }
-    }
-
-    return next();
-});
+            return next();
+        },
+        {} as {sender: string},
+    );
 
 // process request events
 const requestCallback = wrapRequestCallback(
@@ -102,13 +105,13 @@ const requestCallback = wrapRequestCallback(
             default: return NoContent();
         }
     },
-    state.defaultHeaders,
+    builder.state.defaultHeaders,
 );
 
-builder.request.use((ctx) => requestCallback(ctx.request));
+const builder2 = builder.useRequest((ctx) => requestCallback(ctx.request));
 
 // tslint:disable-next-line no-default-export
-export default builder.build(); // build SHIORI interface
+export default builder2.build(); // build SHIORI interface
 
 ```
 
