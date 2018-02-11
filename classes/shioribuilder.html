@@ -113,7 +113,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="shioribuilder.html#buildload" class="tsd-kind-icon">build<wbr>Load</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="shioribuilder.html#buildrequest" class="tsd-kind-icon">build<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="shioribuilder.html#buildunload" class="tsd-kind-icon">build<wbr>Unload</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="shioribuilder.html#use" class="tsd-kind-icon">use</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="shioribuilder.html#use" class="tsd-kind-icon">use</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="shioribuilder.html#useload" class="tsd-kind-icon">use<wbr>Load</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="shioribuilder.html#userequest" class="tsd-kind-icon">use<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="shioribuilder.html#useunload" class="tsd-kind-icon">use<wbr>Unload</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,13 +128,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Shiori<wbr>Builder<span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Shiori<wbr>Builder<span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">State</span>, middlewares<span class="tsd-signature-symbol">?: </span><a href="../interfaces/shiorimiddlewares.html" class="tsd-signature-type">ShioriMiddlewares</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span>, check<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L49">ShioriBuilder.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L60">ShioriBuilder.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -142,10 +145,26 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>state: <span class="tsd-signature-type">State</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> state: <span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> =&nbsp;{} as any</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>state in context</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> middlewares: <a href="../interfaces/shiorimiddlewares.html" class="tsd-signature-type">ShioriMiddlewares</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>middlewares</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> check: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>check middlewares</p>
 										</div>
 									</div>
 								</li>
@@ -160,10 +179,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="load" class="tsd-anchor"></a>
 					<h3>load</h3>
-					<div class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">:</span> <a href="middlewarebuilder.html" class="tsd-signature-type">MiddlewareBuilder</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/loadcontext.html" class="tsd-signature-type">LoadContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new MiddlewareBuilder&lt;LoadContext&lt;State&gt;, LoadResult&gt;()</span></div>
+					<div class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#loadmiddleware" class="tsd-signature-type">LoadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L43">ShioriBuilder.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L54">ShioriBuilder.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -175,10 +194,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="request" class="tsd-anchor"></a>
 					<h3>request</h3>
-					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <a href="middlewarebuilder.html" class="tsd-signature-type">MiddlewareBuilder</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/requestcontext.html" class="tsd-signature-type">RequestContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new MiddlewareBuilder&lt;RequestContext&lt;State&gt;, RequestResult&gt;()</span></div>
+					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#requestmiddleware" class="tsd-signature-type">RequestMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L45">ShioriBuilder.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L56">ShioriBuilder.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -193,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">State</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L49">ShioriBuilder.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L60">ShioriBuilder.ts:60</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -205,10 +224,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="unload" class="tsd-anchor"></a>
 					<h3>unload</h3>
-					<div class="tsd-signature tsd-kind-icon">unload<span class="tsd-signature-symbol">:</span> <a href="middlewarebuilder.html" class="tsd-signature-type">MiddlewareBuilder</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/basecontext.html" class="tsd-signature-type">BaseContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new MiddlewareBuilder&lt;UnloadContext&lt;State&gt;, UnloadResult&gt;()</span></div>
+					<div class="tsd-signature tsd-kind-icon">unload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#unloadmiddleware" class="tsd-signature-type">UnloadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L47">ShioriBuilder.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L58">ShioriBuilder.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -230,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L72">ShioriBuilder.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L140">ShioriBuilder.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -254,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L81">ShioriBuilder.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L149">ShioriBuilder.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L93">ShioriBuilder.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L161">ShioriBuilder.ts:161</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L107">ShioriBuilder.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L175">ShioriBuilder.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -310,17 +329,18 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 					<a name="use" class="tsd-anchor"></a>
 					<h3>use</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../interfaces/shiorimiddleware.html" class="tsd-signature-type">ShioriMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">use<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../interfaces/shiorimiddleware.html" class="tsd-signature-type">ShioriMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">use&lt;AddState&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../interfaces/shiorimiddlewarewithstate.html" class="tsd-signature-type">ShioriMiddlewareWithState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/ShioriBuilder.ts#L63">ShioriBuilder.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L84">ShioriBuilder.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,11 +353,196 @@
 								<li>
 									<h5>middleware: <a href="../interfaces/shiorimiddleware.html" class="tsd-signature-type">ShioriMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>middleware with state</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L85">ShioriBuilder.ts:85</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>AddState</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../interfaces/shiorimiddlewarewithstate.html" class="tsd-signature-type">ShioriMiddlewareWithState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="useload" class="tsd-anchor"></a>
+					<h3>use<wbr>Load</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Load<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#loadmiddleware" class="tsd-signature-type">LoadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Load&lt;AddState&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#loadmiddleware" class="tsd-signature-type">LoadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span>, state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L109">ShioriBuilder.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>add load middleware</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../globals.html#loadmiddleware" class="tsd-signature-type">LoadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
 										<p>middleware</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L110">ShioriBuilder.ts:110</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>AddState</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../globals.html#loadmiddleware" class="tsd-signature-type">LoadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>state: <span class="tsd-signature-type">AddState</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="userequest" class="tsd-anchor"></a>
+					<h3>use<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Request<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#requestmiddleware" class="tsd-signature-type">RequestMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Request&lt;AddState&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#requestmiddleware" class="tsd-signature-type">RequestMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span>, state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L120">ShioriBuilder.ts:120</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>add request middleware</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../globals.html#requestmiddleware" class="tsd-signature-type">RequestMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>middleware</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L121">ShioriBuilder.ts:121</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>AddState</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../globals.html#requestmiddleware" class="tsd-signature-type">RequestMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>state: <span class="tsd-signature-type">AddState</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="useunload" class="tsd-anchor"></a>
+					<h3>use<wbr>Unload</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Unload<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#unloadmiddleware" class="tsd-signature-type">UnloadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Unload&lt;AddState&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#unloadmiddleware" class="tsd-signature-type">UnloadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span>, state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L132">ShioriBuilder.ts:132</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>add unload middleware</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../globals.html#unloadmiddleware" class="tsd-signature-type">UnloadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>middleware</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L133">ShioriBuilder.ts:133</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>AddState</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>middleware: <a href="../globals.html#unloadmiddleware" class="tsd-signature-type">UnloadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>state: <span class="tsd-signature-type">AddState</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="shioribuilder.html" class="tsd-signature-type">ShioriBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -353,9 +558,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="middlewarebuilder.html" class="tsd-kind-icon">Middleware<wbr>Builder</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-has-type-parameter">
@@ -388,8 +590,17 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="shioribuilder.html#buildunload" class="tsd-kind-icon">build<wbr>Unload</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="shioribuilder.html#use" class="tsd-kind-icon">use</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="shioribuilder.html#useload" class="tsd-kind-icon">use<wbr>Load</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="shioribuilder.html#userequest" class="tsd-kind-icon">use<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="shioribuilder.html#useunload" class="tsd-kind-icon">use<wbr>Unload</a>
 							</li>
 						</ul>
 					</li>
@@ -406,6 +617,12 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/shiorimiddleware.html" class="tsd-kind-icon">Shiori<wbr>Middleware</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/shiorimiddlewarewithstate.html" class="tsd-kind-icon">Shiori<wbr>Middleware<wbr>With<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/shiorimiddlewares.html" class="tsd-kind-icon">Shiori<wbr>Middlewares</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#loadmiddleware" class="tsd-kind-icon">Load<wbr>Middleware</a>
@@ -436,6 +653,12 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#unloadresult" class="tsd-kind-icon">Unload<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#addmiddleware" class="tsd-kind-icon">add<wbr>Middleware</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../globals.html#checkmiddleware" class="tsd-kind-icon">check<wbr>Middleware</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#compose" class="tsd-kind-icon">compose</a>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MiddlewareBuilder | shiorack</title>
+	<title>ShioriMiddlewareWithState | shiorack</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,31 +54,24 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="middlewarebuilder.html">MiddlewareBuilder</a>
+					<a href="shiorimiddlewarewithstate.html">ShioriMiddlewareWithState</a>
 				</li>
 			</ul>
-			<h1>Class MiddlewareBuilder&lt;Context, Result&gt;</h1>
+			<h1>Interface ShioriMiddlewareWithState&lt;State, AddState&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>middleware builder</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>Context</h4>
+						<h4>State</h4>
 					</li>
 					<li>
-						<h4>Result</h4>
+						<h4>AddState</h4>
 					</li>
 				</ul>
 			</section>
@@ -86,7 +79,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">MiddlewareBuilder</span>
+						<a href="shiorimiddleware.html" class="tsd-signature-type">ShioriMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ShioriMiddlewareWithState</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -97,14 +95,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="middlewarebuilder.html#middlewares" class="tsd-kind-icon">middlewares</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="middlewarebuilder.html#build" class="tsd-kind-icon">build</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="middlewarebuilder.html#use" class="tsd-kind-icon">use</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="shiorimiddlewarewithstate.html#load" class="tsd-kind-icon">load</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="shiorimiddlewarewithstate.html#request" class="tsd-kind-icon">request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="shiorimiddlewarewithstate.html#state" class="tsd-kind-icon">state</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="shiorimiddlewarewithstate.html#unload" class="tsd-kind-icon">unload</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,97 +106,48 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="middlewares" class="tsd-anchor"></a>
-					<h3>middlewares</h3>
-					<div class="tsd-signature tsd-kind-icon">middlewares<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#middleware" class="tsd-signature-type">Middleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="load" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> load</h3>
+					<div class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">:</span> <a href="../globals.html#loadmiddleware" class="tsd-signature-type">LoadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="shiorimiddleware.html">ShioriMiddleware</a>.<a href="shiorimiddleware.html#load">load</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/MiddlewareBuilder.ts#L8">MiddlewareBuilder.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L36">ShioriBuilder.ts:36</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>middlewares</p>
-						</div>
-					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="build" class="tsd-anchor"></a>
-					<h3>build</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/MiddlewareBuilder.ts#L23">MiddlewareBuilder.ts:23</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>build to one middleware</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Context</span>, next<span class="tsd-signature-symbol">: </span><a href="../globals.html#nextstack" class="tsd-signature-type">NextStack</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#middlewareresult" class="tsd-signature-type">MiddlewareResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>context: <span class="tsd-signature-type">Context</span></h5>
-												</li>
-												<li>
-													<h5>next: <a href="../globals.html#nextstack" class="tsd-signature-type">NextStack</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <a href="../globals.html#middlewareresult" class="tsd-signature-type">MiddlewareResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="request" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> request</h3>
+					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <a href="../globals.html#requestmiddleware" class="tsd-signature-type">RequestMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="shiorimiddleware.html">ShioriMiddleware</a>.<a href="shiorimiddleware.html#request">request</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L37">ShioriBuilder.ts:37</a></li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="use" class="tsd-anchor"></a>
-					<h3>use</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><a href="../globals.html#middleware" class="tsd-signature-type">Middleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/026a09b/lib/MiddlewareBuilder.ts#L14">MiddlewareBuilder.ts:14</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>add middleware</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>middleware: <a href="../globals.html#middleware" class="tsd-signature-type">Middleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>middleware</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="state" class="tsd-anchor"></a>
+					<h3>state</h3>
+					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AddState</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L42">ShioriBuilder.ts:42</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="unload" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> unload</h3>
+					<div class="tsd-signature tsd-kind-icon">unload<span class="tsd-signature-symbol">:</span> <a href="../globals.html#unloadmiddleware" class="tsd-signature-type">UnloadMiddleware</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AddState</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="shiorimiddleware.html">ShioriMiddleware</a>.<a href="shiorimiddleware.html#unload">unload</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Narazaka/shiorack.js/blob/c432f1e/lib/ShioriBuilder.ts#L38">ShioriBuilder.ts:38</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -216,38 +161,44 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="../classes/shioribuilder.html" class="tsd-kind-icon">Shiori<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="basecontext.html" class="tsd-kind-icon">Base<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="loadcontext.html" class="tsd-kind-icon">Load<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="requestcontext.html" class="tsd-kind-icon">Request<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="shiorimiddleware.html" class="tsd-kind-icon">Shiori<wbr>Middleware</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-has-type-parameter">
-						<a href="middlewarebuilder.html" class="tsd-kind-icon">Middleware<wbr>Builder</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="shiorimiddlewarewithstate.html" class="tsd-kind-icon">Shiori<wbr>Middleware<wbr>With<wbr>State</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="middlewarebuilder.html#middlewares" class="tsd-kind-icon">middlewares</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="shiorimiddlewarewithstate.html#load" class="tsd-kind-icon">load</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="middlewarebuilder.html#build" class="tsd-kind-icon">build</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="shiorimiddlewarewithstate.html#request" class="tsd-kind-icon">request</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="middlewarebuilder.html#use" class="tsd-kind-icon">use</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="shiorimiddlewarewithstate.html#state" class="tsd-kind-icon">state</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="shiorimiddlewarewithstate.html#unload" class="tsd-kind-icon">unload</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="shioribuilder.html" class="tsd-kind-icon">Shiori<wbr>Builder</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="../interfaces/basecontext.html" class="tsd-kind-icon">Base<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="../interfaces/loadcontext.html" class="tsd-kind-icon">Load<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="../interfaces/requestcontext.html" class="tsd-kind-icon">Request<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="../interfaces/shiorimiddleware.html" class="tsd-kind-icon">Shiori<wbr>Middleware</a>
+						<a href="shiorimiddlewares.html" class="tsd-kind-icon">Shiori<wbr>Middlewares</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#loadmiddleware" class="tsd-kind-icon">Load<wbr>Middleware</a>
@@ -278,6 +229,12 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#unloadresult" class="tsd-kind-icon">Unload<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#addmiddleware" class="tsd-kind-icon">add<wbr>Middleware</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../globals.html#checkmiddleware" class="tsd-kind-icon">check<wbr>Middleware</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#compose" class="tsd-kind-icon">compose</a>
