@@ -12,7 +12,7 @@
 [![codecov.io](https://codecov.io/github/Narazaka/shiorack.js/coverage.svg?branch=master)](https://codecov.io/github/Narazaka/shiorack.js?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Narazaka/shiorack.js.svg)](https://greenkeeper.io/)
 
-shiorack is middleware based Ukagaka SHIORI subsystem interface builder inspired by rack and koa.
+Middleware based Ukagaka SHIORI subsystem interface builder inspired by rack and koa
 
 ## Install
 

@@ -1,7 +1,7 @@
 {
   "name": "shiorack",
   "version": "1.0.0",
-  "description": "",
+  "description": "Middleware based Ukagaka SHIORI subsystem interface builder inspired by rack and koa",
   "main": "./dist/lib/index.js",
   "types": "./dist/lib/index.d.ts",
   "files": [
