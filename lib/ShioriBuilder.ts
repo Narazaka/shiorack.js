@@ -36,9 +36,13 @@ export interface ShioriMiddleware<State> {
     load?: LoadMiddleware<State>;
     request?: RequestMiddleware<State>;
     unload?: UnloadMiddleware<State>;
+    state?: never;
 }
 
-export interface ShioriMiddlewareWithState<State, AddState> extends ShioriMiddleware<State & AddState> {
+export interface ShioriMiddlewareWithState<State, AddState> {
+    load?: LoadMiddleware<State & AddState>;
+    request?: RequestMiddleware<State & AddState>;
+    unload?: UnloadMiddleware<State & AddState>;
     state: AddState;
 }
 
