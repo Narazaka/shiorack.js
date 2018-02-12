@@ -167,8 +167,9 @@ export class ShioriBuilder<State = {}> {
         const state = this.state;
         const requestParser = new ShioriJK.Shiori.Request.Parser();
 
-        return async function request(requestStr: string) {
-            const context = { request: requestParser.parse(requestStr), state };
+        return async function request(requestStr: string | ShioriJK.Message.Request) {
+            const requestObj = typeof requestStr === "string" ? requestParser.parse(requestStr) : requestStr;
+            const context = { request: requestObj, state };
             const response = await middleware(context, function noNext() { return new ShioriJK.Message.Response(); });
 
             return response.toString();
