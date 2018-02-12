@@ -98,8 +98,8 @@ export class ShioriBuilder<State = {}> {
             newState,
             {
                 load: middleware.load ? addMiddleware(this.load, middleware.load) : this.load,
-                request: middleware.request ? addMiddleware(this.load, middleware.request) : this.load,
-                unload: middleware.unload ? addMiddleware(this.load, middleware.unload) : this.load,
+                request: middleware.request ? addMiddleware(this.request, middleware.request) : this.request,
+                unload: middleware.unload ? addMiddleware(this.unload, middleware.unload) : this.unload,
             },
             false,
         );
