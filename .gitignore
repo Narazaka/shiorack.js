@@ -5,3 +5,4 @@ yarn.lock
 /coverage
 /doc
 /dist
+package-lock.json
