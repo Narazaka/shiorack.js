@@ -30,89 +30,87 @@ import * as ShioriJK from "shiorijk";
 import { ShioriBuilder } from "shiorack";
 
 interface HeadersState {
-    defaultHeaders: {[name: string]: string};
+  defaultHeaders: { [name: string]: string };
 }
 
 // tslint:disable no-object-literal-type-assertion
 const builder = new ShioriBuilder()
-    .use({
-        state: {} as {dirpath: string},
-        // set dirpath
-        load: (ctx, next) => {
-            ctx.state.dirpath = ctx.dirpath;
+  .use({
+    state: {} as { dirpath: string },
+    // set dirpath
+    load: (ctx, next) => {
+      ctx.state.dirpath = ctx.dirpath;
 
-            return next();
+      return next();
+    },
+    // exit
+    unload: async (_ctx, next) => {
+      await next();
+      process.exit();
+    },
+  })
+  .use({
+    state: {
+      defaultHeaders: { Charset: "UTF-8" },
+    } as HeadersState,
+    // error handler
+    request: async (ctx, next) => {
+      try {
+        return await next();
+      } catch (error) {
+        return new ShioriJK.Message.Response({
+          status_line: { code: 400, version: "3.0" },
+          headers: {
+            ...ctx.state.defaultHeaders,
+            "X-Shiori-Error": error.message.replace(/\r?\n/g, "\\n"),
+          },
+        });
+      }
+    },
+  })
+  // ignore OnTranslate
+  .useRequest((ctx, next) => {
+    if (ctx.request.headers.ID === "OnTranslate") {
+      return new ShioriJK.Message.Response({
+        status_line: { code: 400, version: "3.0" },
+        headers: {
+          Charset: "UTF-8",
         },
-        // exit
-        unload: async (_ctx, next) => {
-            await next();
-            process.exit();
-        },
-    })
-    .use({
-        state: {
-            defaultHeaders: { Charset: "UTF-8" },
-        } as HeadersState,
-        // error handler
-        request: async (ctx, next) => {
-            try {
-                return await next();
-            } catch (error) {
-                return new ShioriJK.Message.Response({
-                    status_line: {code: 400, version: "3.0"},
-                    headers: {
-                        ...ctx.state.defaultHeaders,
-                        "X-Shiori-Error": error.message.replace(/\r?\n/g, "\\n"),
-                    },
-                });
-            }
-        },
-    })
-    // ignore OnTranslate
-    .useRequest((ctx, next) => {
-        if (ctx.request.headers.ID === "OnTranslate") {
-            return new ShioriJK.Message.Response({
-                status_line: {code: 400, version: "3.0"},
-                headers: {
-                    Charset: "UTF-8",
-                },
-            });
-        }
+      });
+    }
 
-        return next();
-    })
-    // set ghost name to sender
-    .useRequest(
-        (ctx, next) => {
-            if (ctx.request.headers.ID === "ownerghostname") {
-                const sender = ctx.request.headers.Reference(0);
-                if (typeof sender === "string" && sender.length) {
-                    ctx.state.defaultHeaders.Sender = sender;
-                    ctx.state.sender = sender;
-                }
-            }
+    return next();
+  })
+  // set ghost name to sender
+  .useRequest((ctx, next) => {
+    if (ctx.request.headers.ID === "ownerghostname") {
+      const sender = ctx.request.headers.Reference(0);
+      if (typeof sender === "string" && sender.length) {
+        ctx.state.defaultHeaders.Sender = sender;
+        ctx.state.sender = sender;
+      }
+    }
 
-            return next();
-        },
-        {} as {sender: string},
-    );
+    return next();
+  }, {} as { sender: string });
 
 // process request events
 const requestCallback = wrapRequestCallback(
-    (request: ShioriJK.Message.Request) => {
-        switch (request.headers.ID) {
-            case "OnBoot": return OK("\\h\\s[0]hello.\\e");
-            default: return NoContent();
-        }
-    },
-    builder.state.defaultHeaders,
+  (request: ShioriJK.Message.Request) => {
+    switch (request.headers.ID) {
+      case "OnBoot":
+        return OK("\\h\\s[0]hello.\\e");
+      default:
+        return NoContent();
+    }
+  },
+  builder.state.defaultHeaders
 );
 
 const builder2 = builder.useRequest((ctx) => requestCallback(ctx.request));
 
 // tslint:disable-next-line no-default-export
 export default builder2.build(); // build SHIORI interface
-
 ```
 
 ```bash
