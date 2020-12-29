@@ -7,7 +7,7 @@
 
 [![Dependency Status](https://david-dm.org/Narazaka/shiorack.js/status.svg)](https://david-dm.org/Narazaka/shiorack.js)
 [![devDependency Status](https://david-dm.org/Narazaka/shiorack.js/dev-status.svg)](https://david-dm.org/Narazaka/shiorack.js?type=dev)
-[![Github Actions 'test' Status](https://github.com/actions/Narazaka/shiorack.js/test/badge.svg)](https://github.com/Narazaka/shiorack.js/actions?query=workflow:test)
+[![test](https://github.com/Narazaka/shiorack.js/workflows/test/badge.svg)](https://github.com/Narazaka/shiorack.js/actions?query=workflow:test)
 [![codecov.io](https://codecov.io/github/Narazaka/shiorack.js/coverage.svg?branch=master)](https://codecov.io/github/Narazaka/shiorack.js?branch=master)
 
 Middleware based Ukagaka SHIORI subsystem interface builder inspired by rack and koa
