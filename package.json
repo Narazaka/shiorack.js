@@ -10,7 +10,9 @@
   "scripts": {
     "prepare": "npm run dist",
     "prepublishOnly": "run-s lint test",
-    "dist": "shx rm -rf dist && tsc",
+    "dist": "run-s clean tsc",
+    "clean": "shx rm -rf dist",
+    "tsc": "tsc",
     "test": "nyc mocha",
     "lint": "run-s -c lint:*",
     "lint:eslint": "eslint .",
