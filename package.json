@@ -19,7 +19,7 @@
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "prettier --write .",
     "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
-    "doc": "typedoc --mode file --out doc --readme Readme.md --disableOutputCheck --excludeNotExported lib && cd doc && git status && cd .."
+    "doc": "typedoc --out doc --readme Readme.md --disableOutputCheck lib/index.ts && cd doc && git status && cd .."
   },
   "dependencies": {
     "shiorijk": "^1.0.1"
