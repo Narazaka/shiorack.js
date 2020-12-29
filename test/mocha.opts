@@ -1,4 +1,0 @@
---reporter spec
---ui bdd
---require espower-typescript/guess
-test/*.ts
