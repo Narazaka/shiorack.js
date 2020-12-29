@@ -33,7 +33,6 @@ interface HeadersState {
   defaultHeaders: { [name: string]: string };
 }
 
-// tslint:disable no-object-literal-type-assertion
 const builder = new ShioriBuilder()
   .use({
     state: {} as { dirpath: string },
@@ -109,7 +108,6 @@ const requestCallback = wrapRequestCallback(
 
 const builder2 = builder.useRequest((ctx) => requestCallback(ctx.request));
 
-// tslint:disable-next-line no-default-export
 export default builder2.build(); // build SHIORI interface
 ```
 

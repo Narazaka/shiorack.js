@@ -107,8 +107,7 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: ShioriMiddlewareWithState<State, AddState>
   ) {
     const newState = (middleware.state
-      ? // tslint:disable-next-line prefer-object-spread
-        { ...this.state, ...middleware.state }
+      ? { ...this.state, ...middleware.state }
       : this.state) as State & AddState;
 
     return new ShioriBuilder(

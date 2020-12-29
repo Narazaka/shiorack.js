@@ -1,4 +1,3 @@
-// tslint:disable no-implicit-dependencies
 import * as assert from "power-assert";
 import { ShioriBuilder } from "../lib";
 
