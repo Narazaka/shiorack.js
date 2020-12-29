@@ -24,8 +24,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install deps
+      - name: install
         run: npm install
 
-      - name: Run Tests
-        run: npx run-s lint test
+      - name: lint
+        run: npm lint
+
+      - name: test
+        run: npm test
