@@ -3,6 +3,8 @@ import { addMiddleware, checkMiddleware } from "./addMiddleware";
 import { compose } from "./compose";
 import { Middleware } from "./Middleware";
 
+export type DefaultState = Record<string, unknown>;
+
 /** base context */
 export interface BaseContext<State> {
   /** any state */
@@ -59,7 +61,7 @@ export interface ShioriMiddlewares<State> {
 }
 
 /** SHIORI subsystem interface builder  */
-export class ShioriBuilder<State = Record<string, unknown>> {
+export class ShioriBuilder<State = DefaultState> {
   /** load middlewares */
   load: Array<LoadMiddleware<State>>;
 
@@ -103,7 +105,7 @@ export class ShioriBuilder<State = Record<string, unknown>> {
   use<AddState>(
     middleware: ShioriMiddlewareWithState<State, AddState>
   ): ShioriBuilder<State & AddState>;
-  use<AddState = Record<string, unknown>>(
+  use<AddState = DefaultState>(
     middleware: ShioriMiddlewareWithState<State, AddState>
   ) {
     const newState = (middleware.state
@@ -137,7 +139,7 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: LoadMiddleware<State & AddState>,
     state: AddState
   ): ShioriBuilder<State & AddState>;
-  useLoad<AddState = Record<string, unknown>>(
+  useLoad<AddState = DefaultState>(
     middleware: LoadMiddleware<State & AddState>,
     state?: AddState
   ) {
@@ -155,7 +157,7 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: RequestMiddleware<State & AddState>,
     state: AddState
   ): ShioriBuilder<State & AddState>;
-  useRequest<AddState = Record<string, unknown>>(
+  useRequest<AddState = DefaultState>(
     middleware: RequestMiddleware<State & AddState>,
     state?: AddState
   ) {
@@ -173,7 +175,7 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: UnloadMiddleware<State & AddState>,
     state: AddState
   ): ShioriBuilder<State & AddState>;
-  useUnload<AddState = Record<string, unknown>>(
+  useUnload<AddState = DefaultState>(
     middleware: UnloadMiddleware<State & AddState>,
     state?: AddState
   ) {
