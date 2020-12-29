@@ -3,7 +3,8 @@ import { addMiddleware, checkMiddleware } from "./addMiddleware";
 import { compose } from "./compose";
 import { Middleware } from "./Middleware";
 
-export type DefaultState = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type DefaultState = {};
 
 /** base context */
 export interface BaseContext<State> {
