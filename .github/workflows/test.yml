@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node: ["15"]
-        os: [macOS-latest, windows-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest, macOS-latest]
 
     steps:
       - name: Setup repo
