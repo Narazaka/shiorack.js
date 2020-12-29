@@ -32,3 +32,6 @@ jobs:
 
       - name: test
         run: npm test
+
+      - name: codecov
+        uses: codecov/codecov-action@v1
