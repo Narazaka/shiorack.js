@@ -141,7 +141,8 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: LoadMiddleware<State & AddState>,
     state?: AddState
   ) {
-    return this.use({ load: middleware, state });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return this.use({ load: middleware, state: state as any });
   }
 
   /**
@@ -158,7 +159,8 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: RequestMiddleware<State & AddState>,
     state?: AddState
   ) {
-    return this.use({ request: middleware, state });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return this.use({ request: middleware, state: state as any });
   }
 
   /**
@@ -175,7 +177,8 @@ export class ShioriBuilder<State = Record<string, unknown>> {
     middleware: UnloadMiddleware<State & AddState>,
     state?: AddState
   ) {
-    return this.use({ unload: middleware, state });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return this.use({ unload: middleware, state: state as any });
   }
 
   /** build SHIORI interface */
