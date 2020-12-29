@@ -10,9 +10,11 @@
   "scripts": {
     "prepare": "npm run dist",
     "prepublishOnly": "run-s lint test",
-    "dist": "run-s clean tsc",
+    "dist": "run-s clean dist:build",
     "clean": "shx rm -rf dist",
-    "tsc": "tsc",
+    "dist:build": "run-p dist:build:*",
+    "dist:build:js": "babel --source-maps --extensions .ts -d dist/lib lib",
+    "dist:build:dts": "tsc --emitDeclarationOnly",
     "test": "nyc mocha",
     "lint": "run-s -c lint:*",
     "lint:eslint": "eslint .",
@@ -27,6 +29,10 @@
     "shiorijk": "^1.0.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
     "@types/mocha": "^8.0.0",
     "@types/power-assert": "^1.5.3",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
