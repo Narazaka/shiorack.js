@@ -9,10 +9,10 @@
   ],
   "scripts": {
     "prepare": "npm run dist",
-    "prepublishOnly": "run-p lint test",
+    "prepublishOnly": "run-s lint test",
     "dist": "shx rm -rf dist && tsc",
     "test": "nyc mocha",
-    "lint": "run-s -cn lint:*",
+    "lint": "run-s -c lint:*",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "fix": "run-s -c fix:*",
