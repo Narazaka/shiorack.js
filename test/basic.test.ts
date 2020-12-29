@@ -6,8 +6,8 @@ describe("basic", () => {
     const state = {};
     const builder = new ShioriBuilder(state);
     const shiori = builder.build();
-    assert(shiori.load);
-    assert(shiori.request);
-    assert(shiori.unload);
+    assert(typeof shiori.load === "function");
+    assert(typeof shiori.request === "function");
+    assert(typeof shiori.unload === "function");
   });
 });

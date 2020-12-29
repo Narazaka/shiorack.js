@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "mocha"],
+  "plugins": ["@typescript-eslint", "jest"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -9,6 +9,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "airbnb-typescript/base",
+    "plugin:jest/recommended",
     "prettier",
     "prettier/@typescript-eslint"
   ],
@@ -21,6 +22,12 @@
       "LabeledStatement",
       "WithStatement",
       "ForInStatement"
+    ],
+    "jest/expect-expect": [
+      "error",
+      {
+        "assertFunctionNames": ["assert"]
+      }
     ]
   }
 }
